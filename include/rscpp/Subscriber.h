@@ -1,7 +1,10 @@
 #pragma once
 
+#include <exception>
+
 namespace rscpp
 {
+	template <typename T>
 	class Subscription;
 }
 
@@ -11,14 +14,10 @@ namespace rscpp
 	class Subscriber
 	{
 	public:
-		virtual void onSubscribe(const Subscription &subscription) noexcept = 0;
+		virtual void onSubscribe(Subscription<T> &subscription) noexcept = 0;
 
-		template <std::enable_if<!std::is_scalar<T>::value, bool> = true>
 		virtual void onNext(const T &value) noexcept = 0;
-		template <std::enable_if<std::is_scalar<T>::value, bool> = true>
-		virtual void onNext(T value) noexcept = 0;
-
 		virtual void onError(const std::exception_ptr &exception) noexcept = 0;
-		virtual void onComplete(const Subscription &subscription) noexcept = 0;
+		virtual void onComplete(const Subscription<T> &subscription) noexcept = 0;
 	};
 } // namespace rscpp

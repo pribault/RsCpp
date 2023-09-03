@@ -12,6 +12,6 @@ namespace rscpp
 	class Publisher
 	{
 	public:
-		virtual void subscribe(const Subscriber<T> &subscriber) noexcept = 0;
+		virtual void subscribe(Subscriber<T> &subscriber) noexcept = 0;
 	};
 } // namespace rscpp

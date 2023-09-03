@@ -10,3 +10,6 @@ AccessModifierOffset: -4
 NamespaceIndentation: All
 FixNamespaceComments: true
 AlwaysBreakTemplateDeclarations: Yes
+BreakConstructorInitializers: BeforeComma
+AllowShortFunctionsOnASingleLine: Inline
+AlignConsecutiveDeclarations: Consecutive
