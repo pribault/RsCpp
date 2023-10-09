@@ -2,7 +2,6 @@
 
 namespace rscpp
 {
-	template <typename T>
 	class Subscription
 	{
 	public:
