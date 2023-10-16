@@ -27,10 +27,26 @@ namespace rscpp
 			, m_onComplete(onCompleteMethod)
 		{
 		}
-		inline void onSubscribe(const Subscription &subscription) const { m_onSubscribe(subscription); }
-		inline void onNext(const T &value) const { m_onNext(value); }
-		inline void onError(const std::exception_ptr &error) const { m_onError(error); }
-		inline void onComplete() const { m_onComplete(); }
+		inline void onSubscribe(const Subscription &subscription) const
+		{
+			if (m_onSubscribe)
+				m_onSubscribe(subscription);
+		}
+		inline void onNext(const T &value) const
+		{
+			if (m_onNext)
+				m_onNext(value);
+		}
+		inline void onError(const std::exception_ptr &error) const
+		{
+			if (m_onError)
+				m_onError(error);
+		}
+		inline void onComplete() const
+		{
+			if (m_onComplete)
+				m_onComplete();
+		}
 
 	protected:
 		OnSubscribeMethod m_onSubscribe;

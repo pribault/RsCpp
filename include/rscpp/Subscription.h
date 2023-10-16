@@ -7,7 +7,7 @@ namespace rscpp
 	class Subscription
 	{
 	public:
-		using RequestMethod = std::function<void(size_t)>;
+		using RequestMethod = std::function<void(size_t /* count */)>;
 		using CancelMethod = std::function<void()>;
 
 		inline Subscription(const RequestMethod &requestMethod, const CancelMethod &cancelMethod)
@@ -15,8 +15,16 @@ namespace rscpp
 			, m_cancel(cancelMethod)
 		{
 		}
-		inline void request(size_t count) const { m_request(count); }
-		inline void cancel() const { m_cancel(); }
+		inline void request(size_t count) const
+		{
+			if (m_request)
+				m_request(count);
+		}
+		inline void cancel() const
+		{
+			if (m_cancel)
+				m_cancel();
+		}
 
 	protected:
 		RequestMethod m_request;

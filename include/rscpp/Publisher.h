@@ -20,7 +20,11 @@ namespace rscpp
 			: m_subscribe(subscribeMethod)
 		{
 		}
-		inline void subscribe(const Subscriber<T> &subscriber) const { m_subscribe(subscriber); }
+		inline void subscribe(const Subscriber<T> &subscriber) const
+		{
+			if (m_subscribe)
+				m_subscribe(subscriber);
+		}
 
 	protected:
 		SubscribeMethod m_subscribe;
