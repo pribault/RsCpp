@@ -1,5 +1,7 @@
 #pragma once
 
+#include <functional>
+
 namespace rscpp
 {
 	template <typename T>
@@ -12,6 +14,15 @@ namespace rscpp
 	class Publisher
 	{
 	public:
-		virtual void subscribe(Subscriber<T> &subscriber) noexcept = 0;
+		using SubscribeMethod = std::function<void(const Subscriber<T> & /* subscriber */)>;
+
+		inline Publisher(const SubscribeMethod &subscribeMethod)
+			: m_subscribe(subscribeMethod)
+		{
+		}
+		inline void subscribe(const Subscriber<T> &subscriber) const { m_subscribe(subscriber); }
+
+	protected:
+		SubscribeMethod m_subscribe;
 	};
 } // namespace rscpp
