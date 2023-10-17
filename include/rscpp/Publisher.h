@@ -16,6 +16,7 @@ namespace rscpp
 	public:
 		using SubscribeMethod = std::function<void(const Subscriber<T> & /* subscriber */)>;
 
+		inline Publisher() {}
 		inline Publisher(const SubscribeMethod &subscribeMethod)
 			: m_subscribe(subscribeMethod)
 		{
