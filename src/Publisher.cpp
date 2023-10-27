@@ -1,14 +1,10 @@
-#pragma once
+export module rscpp.Publisher;
 
-#include <functional>
+import rscpp.Subscriber;
 
-namespace rscpp
-{
-	template <typename T>
-	class Subscriber;
-}
+import <functional>;
 
-namespace rscpp
+export namespace rscpp
 {
 	template <typename T>
 	class Publisher
@@ -16,8 +12,8 @@ namespace rscpp
 	public:
 		using SubscribeMethod = std::function<void(const Subscriber<T> & /* subscriber */)>;
 
-		inline Publisher() {}
-		inline Publisher(const SubscribeMethod &subscribeMethod)
+		explicit Publisher() {}
+		explicit Publisher(const SubscribeMethod &subscribeMethod)
 			: m_subscribe(subscribeMethod)
 		{
 		}

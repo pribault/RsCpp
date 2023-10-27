@@ -1,9 +1,9 @@
-#pragma once
+export module rscpp.Processor;
 
-#include <rscpp/Publisher.h>
-#include <rscpp/Subscriber.h>
+import rscpp.Publisher;
+import rscpp.Subscriber;
 
-namespace rscpp
+export namespace rscpp
 {
 	template <typename T, typename R>
 	class Processor : public Subscriber<T>, public Publisher<R>
