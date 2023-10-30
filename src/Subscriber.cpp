@@ -3,8 +3,9 @@ export module rscpp.Subscriber;
 import rscpp.Subscription;
 
 import <exception>;
-import <functional>;
 import <memory>;
+
+using namespace std;
 
 export namespace rscpp
 {
@@ -12,56 +13,38 @@ export namespace rscpp
 	class Subscriber
 	{
 	public:
-		struct State
-		{
-		};
+		Subscriber() = default;
 
-		using OnSubscribeMethod = std::function<void(const Subscription & /* subscription */)>;
-		using OnNextMethod = std::function<void(const T & /* value */)>;
-		using OnErrorMethod = std::function<void(const std::exception_ptr & /* error */)>;
-		using OnCompleteMethod = std::function<void()>;
-		using StatePtr = std::shared_ptr<State>;
-
-		explicit Subscriber() {}
-		explicit Subscriber(const OnSubscribeMethod &onSubcribeMethod, const OnNextMethod &onNextMethod, const OnErrorMethod &onErrorMethod,
-							const OnCompleteMethod &onCompleteMethod, const StatePtr &state = nullptr)
-			: m_onSubscribe(onSubcribeMethod)
-			, m_onNext(onNextMethod)
-			, m_onError(onErrorMethod)
-			, m_onComplete(onCompleteMethod)
-			, m_state(state)
+		virtual void onSubscribe(Subscription &subscription)
 		{
+			if (d_ptr)
+				d_ptr->onSubscribe(subscription);
 		}
 
-		inline void onSubscribe(const Subscription &subscription) const
+		virtual void onNext(const T &value)
 		{
-			if (m_onSubscribe)
-				m_onSubscribe(subscription);
+			if (d_ptr)
+				d_ptr->onNext(value);
 		}
 
-		inline void onNext(const T &value) const
+		virtual void onError(const exception_ptr &error)
 		{
-			if (m_onNext)
-				m_onNext(value);
+			if (d_ptr)
+				d_ptr->onError(error);
 		}
 
-		inline void onError(const std::exception_ptr &error) const
+		virtual void onComplete()
 		{
-			if (m_onError)
-				m_onError(error);
-		}
-
-		inline void onComplete() const
-		{
-			if (m_onComplete)
-				m_onComplete();
+			if (d_ptr)
+				d_ptr->onComplete();
 		}
 
 	protected:
-		OnSubscribeMethod m_onSubscribe;
-		OnNextMethod	  m_onNext;
-		OnErrorMethod	  m_onError;
-		OnCompleteMethod  m_onComplete;
-		StatePtr		  m_state;
+		explicit Subscriber(const shared_ptr<Subscriber<T>> &dd)
+			: d_ptr(dd)
+		{
+		}
+
+		shared_ptr<Subscriber<T>> d_ptr;
 	};
 } // namespace rscpp

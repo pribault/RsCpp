@@ -1,44 +1,34 @@
 export module rscpp.Subscription;
 
-import <functional>;
 import <memory>;
+
+using namespace std;
 
 export namespace rscpp
 {
 	class Subscription
 	{
 	public:
-		struct State
-		{
-		};
+		Subscription() = default;
 
-		using RequestMethod = std::function<void(size_t /* count */)>;
-		using CancelMethod = std::function<void()>;
-		using StatePtr = std::shared_ptr<State>;
-
-		explicit Subscription() {}
-		explicit Subscription(const RequestMethod &requestMethod, const CancelMethod &cancelMethod, const StatePtr &state = nullptr)
-			: m_request(requestMethod)
-			, m_cancel(cancelMethod)
-			, m_state(state)
+		virtual void request(size_t count)
 		{
+			if (d_ptr)
+				d_ptr->request(count);
 		}
 
-		inline void request(size_t count) const
+		virtual void cancel()
 		{
-			if (m_request)
-				m_request(count);
-		}
-
-		inline void cancel() const
-		{
-			if (m_cancel)
-				m_cancel();
+			if (d_ptr)
+				d_ptr->cancel();
 		}
 
 	protected:
-		RequestMethod m_request;
-		CancelMethod  m_cancel;
-		StatePtr	  m_state;
+		explicit Subscription(const shared_ptr<Subscription> &dd)
+			: d_ptr(dd)
+		{
+		}
+
+		shared_ptr<Subscription> d_ptr;
 	};
 } // namespace rscpp

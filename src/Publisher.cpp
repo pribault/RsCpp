@@ -2,7 +2,9 @@ export module rscpp.Publisher;
 
 import rscpp.Subscriber;
 
-import <functional>;
+import <memory>;
+
+using namespace std;
 
 export namespace rscpp
 {
@@ -10,20 +12,20 @@ export namespace rscpp
 	class Publisher
 	{
 	public:
-		using SubscribeMethod = std::function<void(const Subscriber<T> & /* subscriber */)>;
+		Publisher() = default;
 
-		explicit Publisher() {}
-		explicit Publisher(const SubscribeMethod &subscribeMethod)
-			: m_subscribe(subscribeMethod)
+		virtual void subscribe(Subscriber<T> &subscriber)
 		{
-		}
-		inline void subscribe(const Subscriber<T> &subscriber) const
-		{
-			if (m_subscribe)
-				m_subscribe(subscriber);
+			if (d_ptr)
+				d_ptr->subscribe(subscriber);
 		}
 
 	protected:
-		SubscribeMethod m_subscribe;
+		explicit Publisher(const shared_ptr<Publisher<T>> &dd)
+			: d_ptr(dd)
+		{
+		}
+
+		shared_ptr<Publisher<T>> d_ptr;
 	};
 } // namespace rscpp
