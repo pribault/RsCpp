@@ -1,34 +1,23 @@
-export module rscpp.Subscription;
+#include "rscpp/Subscription.h"
 
-import <memory>;
-
+using namespace rscpp;
 using namespace std;
 
-export namespace rscpp
+Subscription::Subscription() = default;
+
+void Subscription::request(size_t count)
 {
-	class Subscription
-	{
-	public:
-		Subscription() = default;
+	if (d_ptr)
+		d_ptr->request(count);
+}
 
-		virtual void request(size_t count)
-		{
-			if (d_ptr)
-				d_ptr->request(count);
-		}
+void Subscription::cancel()
+{
+	if (d_ptr)
+		d_ptr->cancel();
+}
 
-		virtual void cancel()
-		{
-			if (d_ptr)
-				d_ptr->cancel();
-		}
-
-	protected:
-		explicit Subscription(const shared_ptr<Subscription> &dd)
-			: d_ptr(dd)
-		{
-		}
-
-		shared_ptr<Subscription> d_ptr;
-	};
-} // namespace rscpp
+Subscription::Subscription(const shared_ptr<Subscription> &dd)
+	: d_ptr(dd)
+{
+}

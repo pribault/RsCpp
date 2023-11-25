@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.8)
 
 project(RsCpp
 	VERSION			0.0.0
@@ -7,16 +7,17 @@ project(RsCpp
 	LANGUAGES		CXX
 )
 
-add_library(RsCpp)
-
-set_property(TARGET RsCpp PROPERTY CXX_STANDARD 20)
-
-target_sources(RsCpp
-	PUBLIC
-		FILE_SET CXX_MODULES FILES
-			${CMAKE_CURRENT_SOURCE_DIR}/src/RsCpp.cpp
-			${CMAKE_CURRENT_SOURCE_DIR}/src/Processor.cpp
-			${CMAKE_CURRENT_SOURCE_DIR}/src/Publisher.cpp
-			${CMAKE_CURRENT_SOURCE_DIR}/src/Subscriber.cpp
-			${CMAKE_CURRENT_SOURCE_DIR}/src/Subscription.cpp
+set(SOURCES
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/inl/Processor.inl
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/inl/Publisher.inl
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/inl/Subscriber.inl
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/Processor.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/Publisher.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/Subscriber.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/rscpp/Subscription.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/Subscription.cpp
 )
+
+add_library(RsCpp ${SOURCES})
+
+target_include_directories(RsCpp PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
