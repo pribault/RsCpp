@@ -6,6 +6,7 @@
 namespace rscpp
 {
 	/**
+	 * @class Processor Processor.h <rscpp/Processor.h>
 	 * @brief A {@link Processor} represents a processing stage—which is both a {@link Subscriber}
 	 * and a {@link Publisher} and obeys the contracts of both.
 	 *

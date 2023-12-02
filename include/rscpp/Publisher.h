@@ -8,7 +8,8 @@ namespace rscpp
 	class Subscriber;
 
 	/**
-	 * A {@link Publisher} is a provider of a potentially unbounded number of sequenced elements, publishing them according to
+	 * @class Publisher Publisher.h <rscpp/Publisher.h>
+	 * @brief A {@link Publisher} is a provider of a potentially unbounded number of sequenced elements, publishing them according to
 	 * the demand received from its {@link Subscriber}(s).
 	 *
 	 * A {@link Publisher} can serve multiple {@link Subscriber}s subscribed {@link Publisher::subscribe} dynamically

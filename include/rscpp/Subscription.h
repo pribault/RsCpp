@@ -5,6 +5,7 @@
 namespace rscpp
 {
 	/**
+	 * @class Subscription Subscription.h <rscpp/Subscription.h>
 	 * @brief A {@link Subscription} represents a one-to-one lifecycle of a {@link Subscriber} subscribing to a {@link Publisher}.
 	 * <p>
 	 * It can only be used once by a single {@link Subscriber}.
