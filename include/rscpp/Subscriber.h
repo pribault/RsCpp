@@ -23,7 +23,7 @@ namespace rscpp
 	 * <p>
 	 * Demand can be signaled via {@link Subscription::request(size_t)} whenever the {@link Subscriber} instance is capable of handling more.
 	 *
-	 * @param <T> the type of element signaled
+	 * @param T the type of element signaled.
 	 */
 	template <typename T>
 	class Subscriber

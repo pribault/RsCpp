@@ -15,7 +15,7 @@ namespace rscpp
 	 * A {@link Publisher} can serve multiple {@link Subscriber}s subscribed {@link Publisher::subscribe} dynamically
 	 * at various points in time.
 	 *
-	 * @param <T> the type of element signaled
+	 * @param T the type of element signaled.
 	 */
 	template <typename T>
 	class Publisher
