@@ -12,11 +12,11 @@ namespace rscpp
 	 * @brief Will receive call to {@link #onSubscribe(Subscription&)} once after passing an instance of {@link Subscriber} to {@link
 	 * Publisher::subscribe(Subscriber&)}.
 	 * <p>
-	 * No further notifications will be received until {@link Subscription::request(long)} is called.
+	 * No further notifications will be received until {@link Subscription::request(size_t)} is called.
 	 * <p>
 	 * After signaling demand:
 	 * <ul>
-	 * <li>One or more invocations of {@link #onNext(Object)} up to the maximum number defined by {@link Subscription::request(long)}</li>
+	 * <li>One or more invocations of {@link #onNext} up to the maximum number defined by {@link Subscription::request(size_t)}</li>
 	 * <li>Single invocation of {@link #onError(const std::exception_ptr&)} or {@link Subscriber::onComplete()} which signals a terminal state after which no
 	 * further events will be sent.</li>
 	 * </ul>
