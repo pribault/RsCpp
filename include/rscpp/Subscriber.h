@@ -9,19 +9,19 @@ namespace rscpp
 
 	/**
 	 * @class Subscriber Subscriber.h <rscpp/Subscriber.h>
-	 * @brief Will receive call to {@link #onSubscribe(Subscription&)} once after passing an instance of {@link Subscriber} to
-	 * {@link Publisher::subscribe(Subscriber&)}.
+	 * @brief Will receive call to {@link #onSubscribe(Subscription&)} once after passing an instance of {@link rscpp::Subscriber} to
+	 * {@link rscpp::Publisher::subscribe(Subscriber&)}.
 	 * <p>
-	 * No further notifications will be received until {@link Subscription::request(size_t)} is called.
+	 * No further notifications will be received until {@link rscpp::Subscription::request(size_t)} is called.
 	 * <p>
 	 * After signaling demand:
 	 * <ul>
-	 * <li>One or more invocations of {@link #onNext} up to the maximum number defined by {@link Subscription::request(size_t)}</li>
-	 * <li>Single invocation of {@link #onError(const std::exception_ptr&)} or {@link Subscriber::onComplete()} which signals a terminal state after which no
-	 * further events will be sent.</li>
+	 * <li>One or more invocations of {@link #onNext} up to the maximum number defined by {@link rscpp::Subscription::request(size_t)}</li>
+	 * <li>Single invocation of {@link #onError(const std::exception_ptr&)} or {@link rscpp::Subscriber::onComplete()} which signals a terminal state after
+	 * which no further events will be sent.</li>
 	 * </ul>
 	 * <p>
-	 * Demand can be signaled via {@link Subscription::request(size_t)} whenever the {@link Subscriber} instance is capable of handling more.
+	 * Demand can be signaled via {@link rscpp::Subscription::request(size_t)} whenever the {@link rscpp::Subscriber} instance is capable of handling more.
 	 *
 	 * @param T the type of element signaled.
 	 */
@@ -31,25 +31,24 @@ namespace rscpp
 	public:
 		/**
 		 * @private
-		 * @brief {@link Subscriber} default constructor.
+		 * @brief {@link rscpp::Subscriber} default constructor.
 		 */
 		Subscriber();
 
 		/**
-		 * @brief Invoked after calling {@link Publisher::subscribe(Subscriber&)}.
+		 * @brief Invoked after calling {@link rscpp::Publisher::subscribe(Subscriber&)}.
 		 * <p>
-		 * No data will start flowing until {@link Subscription::request(size_t)} is invoked.
+		 * No data will start flowing until {@link rscpp::Subscription::request(size_t)} is invoked.
 		 * <p>
-		 * It is the responsibility of this {@link Subscriber} instance to call {@link Subscription::request(size_t)} whenever more data is wanted.
-		 * <p>
-		 * The {@link Publisher} will send notifications only in response to {@link Subscription::request(size_t)}.
+		 * It is the responsibility of this {@link rscpp::Subscriber} instance to call {@link rscpp::Subscription::request(size_t)} whenever more data is
+		 * wanted. <p> The {@link rscpp::Publisher} will send notifications only in response to {@link rscpp::Subscription::request(size_t)}.
 		 *
-		 * @param subscription the {@link Subscription} that allows requesting data via {@link Subscription#request(size_t)}
+		 * @param subscription the {@link rscpp::Subscription} that allows requesting data via {@link rscpp::Subscription#request(size_t)}
 		 */
 		virtual void onSubscribe(Subscription &subscription);
 
 		/**
-		 * @brief Data notification sent by the {@link Publisher} in response to requests to {@link Subscription::request(size_t)}.
+		 * @brief Data notification sent by the {@link rscpp::Publisher} in response to requests to {@link rscpp::Subscription::request(size_t)}.
 		 *
 		 * @param value the element signaled
 		 */
@@ -58,7 +57,7 @@ namespace rscpp
 		/**
 		 * @brief Failed terminal state.
 		 * <p>
-		 * No further events will be sent even if {@link Subscription::request(size_t)} is invoked again.
+		 * No further events will be sent even if {@link rscpp::Subscription::request(size_t)} is invoked again.
 		 *
 		 * @param error the error signaled
 		 */
@@ -67,14 +66,14 @@ namespace rscpp
 		/**
 		 * @brief Successful terminal state.
 		 * <p>
-		 * No further events will be sent even if {@link Subscription::request(size_t)} is invoked again.
+		 * No further events will be sent even if {@link rscpp::Subscription::request(size_t)} is invoked again.
 		 */
 		virtual void onComplete();
 
 	protected:
 		/**
 		 * @private
-		 * @brief Construct a new {@link Subscriber} with the given implementation.
+		 * @brief Construct a new {@link rscpp::Subscriber} with the given implementation.
 		 *
 		 * @param dd The implementation pointer.
 		 */

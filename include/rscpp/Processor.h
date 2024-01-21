@@ -7,11 +7,11 @@ namespace rscpp
 {
 	/**
 	 * @class Processor Processor.h <rscpp/Processor.h>
-	 * @brief A {@link Processor} represents a processing stage—which is both a {@link Subscriber}
-	 * and a {@link Publisher} and obeys the contracts of both.
+	 * @brief A {@link rscpp::Processor} represents a processing stage—which is both a {@link rscpp::Subscriber}
+	 * and a {@link rscpp::Publisher} and obeys the contracts of both.
 	 *
-	 * @param T the type of element signaled to the {@link Subscriber}.
-	 * @param R the type of element signaled by the {@link Publisher}.
+	 * @param T the type of element signaled to the {@link rscpp::Subscriber}.
+	 * @param R the type of element signaled by the {@link rscpp::Publisher}.
 	 */
 	template <typename T, typename R>
 	class Processor : public Subscriber<T>, public Publisher<R>
@@ -19,14 +19,14 @@ namespace rscpp
 	public:
 		/**
 		 * @private
-		 * @brief {@link Processor} default constructor.
+		 * @brief {@link rscpp::Processor} default constructor.
 		 */
 		Processor();
 
 	protected:
 		/**
 		 * @private
-		 * @brief Construct a new {@link Processor} with the given implementation.
+		 * @brief Construct a new {@link rscpp::Processor} with the given implementation.
 		 *
 		 * @param dd The implementation pointer.
 		 */

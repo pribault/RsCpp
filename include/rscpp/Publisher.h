@@ -9,10 +9,10 @@ namespace rscpp
 
 	/**
 	 * @class Publisher Publisher.h <rscpp/Publisher.h>
-	 * @brief A {@link Publisher} is a provider of a potentially unbounded number of sequenced elements, publishing them according to
-	 * the demand received from its {@link Subscriber}(s).
+	 * @brief A {@link rscpp::Publisher} is a provider of a potentially unbounded number of sequenced elements, publishing them according to
+	 * the demand received from its {@link rscpp::Subscriber}(s).
 	 *
-	 * A {@link Publisher} can serve multiple {@link Subscriber}s subscribed {@link Publisher::subscribe} dynamically
+	 * A {@link rscpp::Publisher} can serve multiple {@link rscpp::Subscriber}s subscribed {@link rscpp::Publisher::subscribe} dynamically
 	 * at various points in time.
 	 *
 	 * @param T the type of element signaled.
@@ -23,30 +23,30 @@ namespace rscpp
 	public:
 		/**
 		 * @private
-		 * @brief {@link Publisher} default constructor.
+		 * @brief {@link rscpp::Publisher} default constructor.
 		 */
 		Publisher();
 
 		/**
-		 * @brief Request {@link Publisher} to start streaming data.
+		 * @brief Request {@link rscpp::Publisher} to start streaming data.
 		 * <p>
-		 * This is a "factory method" and can be called multiple times, each time starting a new {@link Subscription}.
+		 * This is a "factory method" and can be called multiple times, each time starting a new {@link rscpp::Subscription}.
 		 * <p>
-		 * Each {@link Subscription} will work for only a single {@link Subscriber}.
+		 * Each {@link rscpp::Subscription} will work for only a single {@link rscpp::Subscriber}.
 		 * <p>
-		 * A {@link Subscriber} should only subscribe once to a single {@link Publisher}.
+		 * A {@link rscpp::Subscriber} should only subscribe once to a single {@link rscpp::Publisher}.
 		 * <p>
-		 * If the {@link Publisher} rejects the subscription attempt or otherwise fails it will
-		 * signal the error via {@link Subscriber::onError(const std::exception_ptr &)}.
+		 * If the {@link rscpp::Publisher} rejects the subscription attempt or otherwise fails it will
+		 * signal the error via {@link rscpp::Subscriber::onError(const std::exception_ptr &)}.
 		 *
-		 * @param subscriber The {@link Subscriber} that will consume signals from this {@link Publisher}
+		 * @param subscriber The {@link rscpp::Subscriber} that will consume signals from this {@link rscpp::Publisher}
 		 */
 		virtual void subscribe(Subscriber<T> &subscriber);
 
 	protected:
 		/**
 		 * @private
-		 * @brief Construct a new {@link Publisher} with the given implementation.
+		 * @brief Construct a new {@link rscpp::Publisher} with the given implementation.
 		 *
 		 * @param dd The implementation pointer.
 		 */
