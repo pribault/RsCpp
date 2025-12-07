@@ -2,6 +2,8 @@
 
 #include <rscpp/Subscription.h>
 
+#include <exception>
+
 template <typename T>
 rscpp::Subscriber<T>::Subscriber() = default;
 
@@ -24,6 +26,13 @@ void rscpp::Subscriber<T>::onError(const std::exception_ptr &error)
 {
 	if (d_ptr)
 		d_ptr->onError(error);
+}
+
+template <typename T>
+template <typename E>
+void rscpp::Subscriber<T>::onError(E error)
+{
+	onError(std::make_exception_ptr(error));
 }
 
 template <typename T>

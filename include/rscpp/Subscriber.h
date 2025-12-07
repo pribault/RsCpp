@@ -64,6 +64,16 @@ namespace rscpp
 		virtual void onError(const std::exception_ptr &error);
 
 		/**
+		 * @brief Failed terminal state.
+		 * <p>
+		 * No further events will be sent even if {@link rscpp::Subscription::request(std::size_t)} is invoked again.
+		 *
+		 * @param error the error signaled
+		 */
+		template <typename E>
+		void onError(E error);
+
+		/**
 		 * @brief Successful terminal state.
 		 * <p>
 		 * No further events will be sent even if {@link rscpp::Subscription::request(std::size_t)} is invoked again.
