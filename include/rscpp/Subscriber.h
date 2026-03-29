@@ -29,6 +29,9 @@ namespace rscpp
 	class Subscriber
 	{
 	public:
+		/**
+		 * @brief The type of element signaled.
+		 */
 		using subscriber_value_type = T;
 
 		/**

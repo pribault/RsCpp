@@ -21,6 +21,9 @@ namespace rscpp
 	class Publisher
 	{
 	public:
+		/**
+		 * @brief The type of element signaled.
+		 */
 		using publisher_value_type = T;
 
 		/**
