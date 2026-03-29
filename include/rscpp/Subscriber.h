@@ -29,6 +29,8 @@ namespace rscpp
 	class Subscriber
 	{
 	public:
+		using subscriber_value_type = T;
+
 		/**
 		 * @private
 		 * @brief {@link rscpp::Subscriber} default constructor.

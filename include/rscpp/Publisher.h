@@ -21,6 +21,8 @@ namespace rscpp
 	class Publisher
 	{
 	public:
+		using publisher_value_type = T;
+
 		/**
 		 * @private
 		 * @brief {@link rscpp::Publisher} default constructor.
